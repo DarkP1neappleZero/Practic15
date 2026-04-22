@@ -1,1 +1,56 @@
+# Задание 1.1: Вывести лабиринт
+maze_str = input("Введите строку лабиринта (25 символов): ")
 
+print("\nЛабиринт:")
+for i in range(5):
+    print(maze_str[i*5:(i+1)*5])
+
+# Задание 1.2: Найти координату входа "н"
+start_index = maze_str.find("н")
+start_row = start_index // 5
+start_col = start_index % 5
+print(f"\nВход находится в строке {start_row}, столбце {start_col}")
+
+# Задание 1.3: Найти координату выхода "ф"
+end_index = maze_str.find("ф")
+end_row = end_index // 5
+end_col = end_index % 5
+print(f"Выход находится в строке {end_row}, столбце {end_col}")
+
+# Задание 1.4: Манхэттенское расстояние
+distance = abs(start_row - end_row) + abs(start_col - end_col)
+print(f"Расстояние от входа до выхода: {distance} шагов")
+
+# Задание 1.5: Подсчитать количество монет "м"
+coins_count = maze_str.count("м")
+print(f"Монеты: {'🟢' * coins_count} x{coins_count}" if coins_count > 0 else "Монеты: 0")
+
+# Задание 1.6: Подсчитать оставшееся здоровье
+traps_count = maze_str.count("л")  # ловушки
+enemies_count = maze_str.count("з")  # враги
+
+total_damage = traps_count * 10 + enemies_count * 50
+health_left = 100 - total_damage
+if health_left < 0:
+    health_left = 0
+
+print(f"Здоровье: {'❤️' * (health_left // 10)} {health_left} HP" if health_left > 0 else "Здоровье: 0 HP")
+
+# Задание 1.7: Заменить символы лабиринта на эмодзи
+emoji_map = {
+    "0": "⬜",      # белый квадрат
+    "1": "⬛",      # черный квадрат
+    "л": "🔷",      # синий ромб
+    "м": "🟡",      # желтый круг
+    "ф": "🟫",      # коричневый квадрат
+    "з": "🐷",      # свинья
+    "н": "⭐"       # звезда
+}
+
+print("\nЛабиринт с эмодзи:")
+for i in range(5):
+    row = maze_str[i*5:(i+1)*5]
+    emoji_row = ""
+    for ch in row:
+        emoji_row += emoji_map.get(ch, ch)
+    print(emoji_row)
