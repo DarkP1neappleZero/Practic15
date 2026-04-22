@@ -54,3 +54,4 @@ for i in range(5):
     for ch in row:
         emoji_row += emoji_map.get(ch, ch)
     print(emoji_row)
+н01лм0з0ф0101010101010101010101010
